@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .balloon:nth-child(1) {
+            background: #fff;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            background: #ffd700;
+            left: 30%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #fff;
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #ffd700;
+            left: 70%;
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #fff;
+            left: 90%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2em;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-body {
+            padding: 40px 30px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .message {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .decoration {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #f5576c;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f5576c;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .confetti:nth-child(2n) {
+            background: #ffd700;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #667eea;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #f093fb;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .card-body {
+                padding: 30px 20px;
+            }
+            
+            .message {
+                font-size: 1em;
+            }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .music-player:hover {
+            transform: translateY(-5px);
+        }
+
+        .play-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        .music-info {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .music-info strong {
+            display: block;
+            color: #f5576c;
+            margin-bottom: 2px;
+        }
+
+        .music-info small {
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 15px;
+            }
+
+            .music-info strong {
+                font-size: 0.85em;
+            }
+
+            .music-info small {
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 20%; animation-delay: 0.5s;"></div>
+    <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
+    <div class="confetti" style="left: 40%; animation-delay: 0.3s;"></div>
+    <div class="confetti" style="left: 50%; animation-delay: 0.7s;"></div>
+    <div class="confetti" style="left: 60%; animation-delay: 0.2s;"></div>
+    <div class="confetti" style="left: 70%; animation-delay: 0.9s;"></div>
+    <div class="confetti" style="left: 80%; animation-delay: 0.4s;"></div>
+    <div class="confetti" style="left: 90%; animation-delay: 0.6s;"></div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="balloons">
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+            </div>
+            <h1>Selamat Ulang Tahun</h1>
+            <p class="subtitle">Untuk Seseorang yang Istimewa</p>
+        </div>
+        
+        <div class="card-body">
+            <div class="message">
+                <p>
+                    Hai! Selamat ulang tahun ya! Semoga hari spesialmu menyenangkan dan penuh hal-hal yang bikin kamu bahagia.
+                </p>
+                
+                <div class="decoration">✨ 🎂 ✨</div>
+                
+                <p>
+                    Semoga di tahun barumu ini, kamu selalu dikelilingi kebahagiaan, kesehatan, 
+                    dan kesuksesan. Semoga semua impian dan harapanmu tercapai, dan semoga kamu 
+                    selalu menemukan alasan untuk tersenyum setiap harinya.
+                </p>
+                
+                <p>
+                    Tetap semangat menjalani hari-harimu dan terus jadi pribadi yang positif. 
+                    Wishing you all the best di tahun ini dan tahun-tahun selanjutnya!
+                </p>
+            </div>
+            
+            <div class="signature">
+                Dengan tulus,<br>
+                <strong>Temanmu yang dulu</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-player">
+        <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+        <div class="music-info">
+            <strong>🎵 Birthday Song</strong>
+            <small id="status">Klik untuk play musik</small>
+        </div>
+        <audio id="birthdaySong" loop>
+            <source src="lagu.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById('birthdaySong');
+        const playBtn = document.getElementById('playBtn');
+        const status = document.getElementById('status');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playBtn.textContent = '⏸';
+                    status.textContent = 'Sedang diputar...';
+                }).catch(err => {
+                    console.log('Error playing audio:', err);
+                    status.textContent = 'Error memutar musik';
+                });
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶';
+                status.textContent = 'Klik untuk play musik';
+            }
+        }
+    </script>
+</body>
+</html>
